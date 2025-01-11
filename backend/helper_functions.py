@@ -86,7 +86,7 @@ def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None:
 
     print(f"Successfully converted {ics_file_path} to {csv_file_path}")
 
-def register_student_data(ics_file_path: str, database_file_path: str, user_id:int, student_name:str) -> None:
+def append_student_data(ics_file_path: str, database_file_path: str, user_id:int, student_name:str) -> None:
     """
     Add student data to end of big data file (database_file_path)
     """
@@ -192,7 +192,6 @@ def id_to_name(id_datafile:str, user_id:int) -> str:
                 user_name = row[STUSCHED_NAME]
                 return user_name
     
-
 def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
     """
     Creates a new CSV file with the format: date | time start | class | list of names taking that class.
