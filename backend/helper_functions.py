@@ -5,11 +5,13 @@ from icalendar import Calendar
 from datetime import datetime
 import os
 import json
+from random import randint
 
 # Functions to implement
 # store students without a class
 # store students with a class
 # register new user (generate user id, store calendar/name, etc)
+# generate a random study session time based on class_schedule
 
 # FAQ
 # How do Students log in?
@@ -236,23 +238,34 @@ def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
 
     print(f"Successfully created class schedule at {output_csv_path}")
 
-def register_new_student(username:str, password:str, name:str, 
-                          languages:list, bio:str, calendar_filepath:str, database_filepath:str):
+def generate_user_id():
+    return randint(100, 999)
+
+def register_new_student(username:str, password:str, name:str, languages:list, bio:str, 
+                          calendar_filepath:str, database_filepath:str) -> None:
     """
     Creates new user in database.
     Generates user ID
     """
 
-    my_profile = {
-        "username" : username,
-        "password" : password,
-        "name" : name,
-        "languages" : languages,
-        "bio" : bio
+    # Check if the data file exists
+    if not os.path.exists(database_filepath):
+        raise FileNotFoundError(f"The file {database_filepath} does not exist.")
 
+    UserID = generate_user_id()
+
+    my_profile = {
+        "Username" : username,
+        "Password" : password,
+        "UserID" : UserID,
+        "Name" : name,
+        "Languages" : languages,
+        "Bio" : bio
     }
 
     with open(database_filepath, "a", newline="", encoding="utf-8") as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=["username","password","name","languages","bio"])
+        writer = csv.DictWriter(csv_file, fieldnames=["Username","Password","UserID", "Name","Languages","Bio"])
         #writer.writeheader()
         writer.writerow(my_profile)
+
+    print(f"Successfully added {name} with user {username}.")

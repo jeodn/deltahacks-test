@@ -1,5 +1,4 @@
-username,password,name,languages,bio
-villasjo,abcdefg99,Josh Villas,"English,Chinese",i like turtle,
-halper33,pswd123,Daniel Halpern,"English,German",i like trains,
-fortnitejonesy,password69,Jonesy Battler,"English, German",I love kicking babies
-fortnitejonesy,password69,Jonesy Battler,"English, German",I love kicking babies
+username,password,UserID,name,languages,bio
+villasjo,abcdefg99,100,Josh Villas,"English,Chinese",i like turtle,
+halper33,pswd123,101,Daniel Halpern,"English,German",i like trains,
+fortnitejonesy,password69,910,Jonesy Battler,"English, German",I love kicking babies
