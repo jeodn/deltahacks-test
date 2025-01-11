@@ -1,15 +1,24 @@
 # Convert ICS file to CSV
 import csv
 from icalendar import Calendar
+from datetime import datetime
 import os
 
 # Constants
-example_ics_name = "./test-assets/josh-calendar-export.ics"
-example_csv_name = "./test-assets/export.csv"
+num_to_weekday = {
+    0: "Monday",
+    1: "Tuesday",
+    2: "Wednesday",
+    3: "Thursday",
+    4: "Friday",
+    5: "Saturday",
+    6: "Sunday"
+}
 
 def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None:
     """
-    Converts an .ics (iCalendar) file to a .csv file.
+    Converts an .ics (iCalendar) file to a .csv file. 
+    Columns are: Start,End,Summary,Description,Location
     
     Args:
         ics_file_path (str): Path to the input .ics file.
@@ -34,21 +43,26 @@ def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None:
     events = []
     for component in calendar.walk():
         if component.name == "VEVENT":
+            start_date = component.get("dtstart").dt if component.get("dtstart") else ""
+            end_date = component.get("dtend").dt if component.get("dtend") else ""
+
             event = {
-                "Start": component.get("dtstart").dt if component.get("dtstart") else "",
-                "End": component.get("dtend").dt if component.get("dtend") else "",
+                "Day": datetime.fromisoformat(str(start_date)).strftime("%A"), # datetime to day
+                "Start": datetime.fromisoformat(str(start_date)).strftime("%H:%M"), # datetime to time
+                "End": datetime.fromisoformat(str(end_date)).strftime("%H:%M"),
                 "Summary": component.get("summary", ""),
-                "Description": component.get("description", ""),
+                "Description": component.get("description", "").split('\n')[0], # GET ANYTHING BEFORE \N
                 "Location": component.get("location", "")
             }
             events.append(event)
+            # REMOVE ANYTHING AFTER \n, AND DISREGARD IF EVENT LOCATION IS "ZZ TBA"
 
     if not events:
         raise ValueError("No events found in the .ics file.")
 
     # Write events to a CSV file
     with open(csv_file_path, "w", newline="", encoding="utf-8") as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=["Start", "End", "Summary", "Description", "Location"])
+        writer = csv.DictWriter(csv_file, fieldnames=["Day", "Start", "End", "Summary", "Description", "Location"])
         writer.writeheader()
         writer.writerows(events)
 
