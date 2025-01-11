@@ -75,6 +75,10 @@ def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None:
     print(f"Successfully converted {ics_file_path} to {csv_file_path}")
 
 def register_student_data(ics_file_path: str, database_file_path: str, user_id:int, student_name:str) -> None:
+    """
+    Add student data to end of big data file (database_file_path)
+    """
+
     # Check if the input file exists
     if not os.path.exists(ics_file_path):
         raise FileNotFoundError(f"The file {ics_file_path} does not exist.")
