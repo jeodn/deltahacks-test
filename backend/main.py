@@ -4,7 +4,7 @@ from helper_functions import *
 base_dir = os.path.dirname(os.path.abspath(__file__))
 example_ics_name = os.path.join(base_dir, "data/josh-calendar-export.ics")
 example_csv_name = os.path.join(base_dir, "data/student_schedules.csv")
-example_id_database = "./backend/data/id_to_name.json"
+example_id_database = os.path.join("./backend/data/id_to_name.json")
 example_userid = 1
 
 if __name__ == "__main__":
