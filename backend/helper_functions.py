@@ -1,5 +1,6 @@
 # Convert ICS file to CSV
 import csv
+from collections import defaultdict
 from icalendar import Calendar
 from datetime import datetime
 import os
@@ -191,3 +192,48 @@ def id_to_name(id_datafile:str, user_id:int) -> str:
                 user_name = row[STUSCHED_NAME]
                 return user_name
     
+
+def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
+    """
+    Creates a new CSV file with the format: date | time start | class | list of names taking that class.
+    
+    Args:
+        input_csv_path (str): Path to the input student schedules CSV file.
+        output_csv_path (str): Path to the output CSV file.
+    """
+    schedule = defaultdict(dict)
+
+    # Read the input CSV file
+    with open(input_csv_path, newline='', encoding="utf-8") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            day = row["Day"]
+            start_time = row["Start"]
+            course_code = row["Course Code"]
+            student_name = row["Name"]
+
+            if day not in schedule:
+                schedule[day] = {}
+            if start_time not in schedule[day]:
+                schedule[day][start_time] = {}
+            if course_code not in schedule[day][start_time]:
+                schedule[day][start_time][course_code] = []
+
+            schedule[day][start_time][course_code].append(student_name)
+
+    # Write to the output CSV file
+    with open(output_csv_path, "w", newline="", encoding="utf-8") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(["Day", "Time Start", "Class", "List of Names"])
+        for day, times in schedule.items():
+            for start_time, classes in times.items():
+                for course_code, names in classes.items():
+                    writer.writerow([day, start_time, course_code, ", ".join(names)])
+
+    print(f"Successfully created class schedule at {output_csv_path}")
+
+# Example usage
+base_dir = os.path.dirname(os.path.abspath(__file__))
+input_csv_path = os.path.join(base_dir, "./data/student_schedules.csv")
+output_csv_path = os.path.join(base_dir, "./data/class_schedule.csv")
+create_class_schedule(input_csv_path, output_csv_path)
