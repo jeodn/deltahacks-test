@@ -3,6 +3,7 @@ import csv
 from icalendar import Calendar
 from datetime import datetime
 import os
+import json
 
 # Functions to implement
 # store students without a class
@@ -11,7 +12,7 @@ import os
 # id to name
 
 # Constants
-num_to_weekday = {
+NUM_TO_WEEKDAY = {
     0: "Monday",
     1: "Tuesday",
     2: "Wednesday",
@@ -20,6 +21,16 @@ num_to_weekday = {
     5: "Saturday",
     6: "Sunday"
 }
+
+# student_schedules.csv columns
+STUSCHED_USERID = 0
+STUSCHED_NAME = 1
+STUSCHED_DAY = 2
+STUSCHED_STARTTIME = 3
+STUSCHED_ENDTIME = 4
+STUSCHED_COURSECODE = 5
+STUSCHED_COURSENAME = 6
+STUSCHED_LOCATION = 7
 
 def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None:
     """
@@ -164,3 +175,19 @@ def count_students_without_classes(file_path: str, day: str, start_time: str, en
     students_without_classes = all_students - students_with_classes
     
     return students_without_classes
+
+def id_to_name(id_datafile:str, user_id:int) -> str:
+    """
+    Get name of student given their User ID (which is not student ID).
+    User IDs are stored in a .json file with filename <id_datafile>
+    """
+    string_user_id = str(user_id)
+
+    with open(id_datafile) as id_file:
+        for line in id_file:
+            row = line.split(",")
+            row_id = row[STUSCHED_USERID]
+            if string_user_id == str(row_id):
+                user_name = row[STUSCHED_NAME]
+                return user_name
+    
