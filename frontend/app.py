@@ -1,15 +1,12 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 @app.route('/')
+@app.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', repeats = 10)
 
-@app.route('/log_click', methods=['POST'])
-def log_click():
-    # Perform any backend logic here
-    return jsonify({"status": "success", "message": "Click logged"})
+if __name__ == '__main__': 
+    app.run(debug = True)
 
-if __name__ == '__main__':
-    app.run(debug=True)
