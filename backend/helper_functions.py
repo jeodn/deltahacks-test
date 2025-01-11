@@ -1,8 +1,10 @@
 # Convert ICS file to CSV
 import csv
+from collections import defaultdict
 from icalendar import Calendar
 from datetime import datetime
 import os
+import json
 
 # Functions to implement
 # store students without a class
@@ -11,7 +13,7 @@ import os
 # id to name
 
 # Constants
-num_to_weekday = {
+NUM_TO_WEEKDAY = {
     0: "Monday",
     1: "Tuesday",
     2: "Wednesday",
@@ -20,6 +22,16 @@ num_to_weekday = {
     5: "Saturday",
     6: "Sunday"
 }
+
+# student_schedules.csv columns
+STUSCHED_USERID = 0
+STUSCHED_NAME = 1
+STUSCHED_DAY = 2
+STUSCHED_STARTTIME = 3
+STUSCHED_ENDTIME = 4
+STUSCHED_COURSECODE = 5
+STUSCHED_COURSENAME = 6
+STUSCHED_LOCATION = 7
 
 def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None:
     """
@@ -74,7 +86,7 @@ def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None:
 
     print(f"Successfully converted {ics_file_path} to {csv_file_path}")
 
-def register_student_data(ics_file_path: str, database_file_path: str, user_id:int, student_name:str) -> None:
+def append_student_data(ics_file_path: str, database_file_path: str, user_id:int, student_name:str) -> None:
     """
     Add student data to end of big data file (database_file_path)
     """
@@ -164,3 +176,58 @@ def count_students_without_classes(file_path: str, day: str, start_time: str, en
     students_without_classes = all_students - students_with_classes
     
     return students_without_classes
+
+def id_to_name(id_datafile:str, user_id:int) -> str:
+    """
+    Get name of student given their User ID (which is not student ID).
+    User IDs are stored in a .json file with filename <id_datafile>
+    """
+    string_user_id = str(user_id)
+
+    with open(id_datafile) as id_file:
+        for line in id_file:
+            row = line.split(",")
+            row_id = row[STUSCHED_USERID]
+            if string_user_id == str(row_id):
+                user_name = row[STUSCHED_NAME]
+                return user_name
+    
+def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
+    """
+    Creates a new CSV file with the format: date | time start | class | list of names taking that class.
+    
+    Args:
+        input_csv_path (str): Path to the input student schedules CSV file.
+        output_csv_path (str): Path to the output CSV file.
+    """
+    schedule = defaultdict(dict)
+
+    # Read the input CSV file
+    with open(input_csv_path, newline='', encoding="utf-8") as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            day = row["Day"]
+            start_time = row["Start"]
+            course_code = row["Course Code"]
+            UserID = row["UserID"]
+
+            if day not in schedule:
+                schedule[day] = {}
+            if start_time not in schedule[day]:
+                schedule[day][start_time] = {}
+            if course_code not in schedule[day][start_time]:
+                schedule[day][start_time][course_code] = []
+
+            schedule[day][start_time][course_code].append(UserID)
+
+    # Write to the output CSV file
+    with open(output_csv_path, "w", newline="", encoding="utf-8") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(["Day", "Time Start", "Class", "List of Names"])
+        for day, times in schedule.items():
+            for start_time, classes in times.items():
+                for course_code, names in classes.items():
+                    writer.writerow([day, start_time, course_code, ", ".join(names)])
+
+    print(f"Successfully created class schedule at {output_csv_path}")
+
