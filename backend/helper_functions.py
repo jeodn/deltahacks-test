@@ -210,7 +210,7 @@ def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
             day = row["Day"]
             start_time = row["Start"]
             course_code = row["Course Code"]
-            student_name = row["Name"]
+            UserID = row["UserID"]
 
             if day not in schedule:
                 schedule[day] = {}
@@ -219,7 +219,7 @@ def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
             if course_code not in schedule[day][start_time]:
                 schedule[day][start_time][course_code] = []
 
-            schedule[day][start_time][course_code].append(student_name)
+            schedule[day][start_time][course_code].append(UserID)
 
     # Write to the output CSV file
     with open(output_csv_path, "w", newline="", encoding="utf-8") as csv_file:
@@ -232,8 +232,3 @@ def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
 
     print(f"Successfully created class schedule at {output_csv_path}")
 
-# Example usage
-base_dir = os.path.dirname(os.path.abspath(__file__))
-input_csv_path = os.path.join(base_dir, "./data/student_schedules.csv")
-output_csv_path = os.path.join(base_dir, "./data/class_schedule.csv")
-create_class_schedule(input_csv_path, output_csv_path)
