@@ -10,7 +10,12 @@ import json
 # store students without a class
 # store students with a class
 # register new user (generate user id, store calendar/name, etc)
-# id to name
+
+# FAQ
+# How do Students log in?
+#   Students log in using a username and a password. 
+#   The backend identification identifies students using an assigned user ID.
+#   But they log in using the username.
 
 # Constants
 NUM_TO_WEEKDAY = {
@@ -231,3 +236,23 @@ def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
 
     print(f"Successfully created class schedule at {output_csv_path}")
 
+def register_new_student(username:str, password:str, name:str, 
+                          languages:list, bio:str, calendar_filepath:str, database_filepath:str):
+    """
+    Creates new user in database.
+    Generates user ID
+    """
+
+    my_profile = {
+        "username" : username,
+        "password" : password,
+        "name" : name,
+        "languages" : languages,
+        "bio" : bio
+
+    }
+
+    with open(database_filepath, "a", newline="", encoding="utf-8") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=["username","password","name","languages","bio"])
+        #writer.writeheader()
+        writer.writerow(my_profile)
