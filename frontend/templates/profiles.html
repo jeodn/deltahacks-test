@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% if user_info %}
+            <h1>Profile for {{ user_info.get('Name', 'Not Found') }}</h1>
+            <div class="profile-info">
+                <p><strong>Email:</strong> {{ user_info.get('Email', 'N/A') }}</p>
+                <p><strong>Languages:</strong> {{ user_info.get('Languages', 'N/A') }}</p>
+                <p><strong>Bio:</strong> {{ user_info.get('Bio', 'N/A') }}</p>
+            </div>
+            
+            <h2>Course Schedule</h2>
+            <div class="schedule">
+                {% for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] %}
+                    <div class="day-column">
+                        <h3>{{ day }}</h3>
+                        {% for hour in range(8, 22) %}
+                            <div class="time-slot">
+                                {% if (hour, day) in schedule %}
+                                    <div class="course">
+                                        {{ schedule[(hour, day)] }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>User not found.</p>
+        {% endif %}
+        <a href="{{ url_for('profiles') }}" class="btn">Back to Search</a>
+    </div>
+</body>
+</html>

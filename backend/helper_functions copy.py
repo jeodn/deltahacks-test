@@ -344,16 +344,11 @@ def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
 def generate_user_id():
     return random.randint(100, 999)
 
-import csv
-import os
-
 def register_new_student(name, password, email, languages, bio, file_path, user_db_path):
-    user_id = name  # Assuming UserID is the same as the name for simplicity
     user_data = {
         'Name': name,
         'Password': password,
         'Email': email,
-        'UserID': user_id,
         'Languages': languages,
         'Bio': bio,
         'File Path': file_path
@@ -362,7 +357,7 @@ def register_new_student(name, password, email, languages, bio, file_path, user_
     file_exists = os.path.isfile(user_db_path)
     
     with open(user_db_path, 'a', newline='') as csvfile:
-        fieldnames = ['Name', 'Password', 'Email', 'UserID', 'Languages', 'Bio', 'File Path']
+        fieldnames = ['Name', 'Password', 'Email', 'Languages', 'Bio', 'File Path']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
         if not file_exists:

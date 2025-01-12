@@ -18,17 +18,7 @@ def start():
 def index():
     user_schedule = get_user_schedule(os.path.join(app.config['UPLOAD_FOLDER'], '..', 'data', 'student_schedules.csv'), user_name)
     availability_schedule = get_availability_schedule(os.path.join(app.config['UPLOAD_FOLDER'], '..', 'data', 'student_schedules.csv'), user_name)
-    
-    max_available_students = max(
-        len(students) 
-        for students in availability_schedule.values()
-    ) if availability_schedule else 1  # Prevent division by zero
-    
-    return render_template('schedule.html',
-                         user_name=user_name,
-                         user_schedule=user_schedule,
-                         availability_schedule=availability_schedule,
-                         max_available_students=max_available_students)
+    return render_template('schedule.html', user_schedule=user_schedule, availability_schedule=availability_schedule, user_name=user_name)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -67,21 +57,20 @@ def profiles():
         
         # Fix file paths using os.path.join
         schedules_path = os.path.join(app.config['UPLOAD_FOLDER'], '..', 'data', 'student_schedules.csv')
-        user_db_path = os.path.join(app.config['UPLOAD_FOLDER'], '..', 'data', 'user_database.csv')
         
         schedule = get_user_schedule(schedules_path, search_name)
         
-        # Get user info from user_database.csv
+        # Get user info from the same CSV
         user_info = {}
-        with open(user_db_path, 'r') as file:
+        with open(schedules_path, 'r') as file:
             reader = csv.DictReader(file)
             for row in reader:
-                if row['name'] == search_name:
+                if row['Name'] == search_name:
                     user_info = {
-                        'Name': row['name'],
-                        'Email': row['email'],
-                        'Languages': row['languages'],
-                        'Bio': row['bio']
+                        'Name': row['Name'],
+                        'Email': row['Email'],
+                        'Languages': row['Languages'],
+                        'Bio': row['Bio']
                     }
                     break
         
