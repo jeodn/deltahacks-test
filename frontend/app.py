@@ -17,7 +17,17 @@ def start():
 def index():
     user_schedule = get_user_schedule('backend/data/student_schedules.csv',user_name)
     availability_schedule = get_availability_schedule('backend/data/student_schedules.csv',user_name)
-    return render_template('schedule.html', user_schedule=user_schedule, availability_schedule=availability_schedule, user_name=user_name)
+    
+    max_available_students = max(
+        len(students) 
+        for students in availability_schedule.values()
+    ) if availability_schedule else 1  # Prevent division by zero
+    
+    return render_template('schedule.html',
+                         user_name=user_name,
+                         user_schedule=user_schedule,
+                         availability_schedule=availability_schedule,
+                         max_available_students=max_available_students)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

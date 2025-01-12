@@ -7,7 +7,10 @@
 </head>
 <body>
     <div class="header">
-        <h1>Schedule for {{ user_name }}</h1>
+        <button class="profile-button">
+            <div class="profile-picture">A</div>
+            <span>{{ user_name }}</span>
+        </button>
     </div>
     
     <div class="timetable">
@@ -33,13 +36,51 @@
                         </div>
                     {% endif %}
                     {% if (hour, day) in availability_schedule %}
-                        <div class="availability-schedule">
-                            Available
-                        </div>
+                        <button type="button" class="availability-schedule" 
+                            style="background-color: rgb(48, 183, 48, {{ availability_schedule[(hour, day)]|length / max_available_students }});"
+                            data-hour="{{ hour }}:00"
+                            data-day="{{ day }}"
+                            data-people='{{ availability_schedule[(hour, day)]|tojson }}'>
+                            <span class="hover-text">Available: {{ availability_schedule[(hour, day)]|length }}</span>
+                        </button>
                     {% endif %}
                 </div>
             {% endfor %}
         {% endfor %}
     </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button" onclick="closePopup()">&times;</span>
+            <h3 id="popup-title"></h3>
+            <ul id="popup-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.availability-schedule');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const hour = this.dataset.hour;
+                    const day = this.dataset.day;
+                    const people = JSON.parse(this.dataset.people);
+                    
+                    const popup = document.getElementById('popup');
+                    const title = document.getElementById('popup-title');
+                    const list = document.getElementById('popup-list');
+                    
+                    title.textContent = `Available at ${hour} on ${day}`;
+                    list.innerHTML = people.map(person => `<li>${person}</li>`).join('');
+                    
+                    popup.style.display = 'flex';
+                });
+            });
+        });
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
