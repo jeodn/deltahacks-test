@@ -24,6 +24,10 @@ if __name__ == "__main__":
                          "English, German", "I love kicking babies", example_ics_name, example_user_database)
     """
 
-    generate_available_timeslot_database(example_noclasses_database)
+    #generate_available_timeslot_database(example_noclasses_database)
+
+    print(generate_study_session_time(1))
+
+    #generate_study_session_time(0)
 
     #print(int_to_time(23), int_to_time(23))

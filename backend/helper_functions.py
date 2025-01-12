@@ -5,7 +5,8 @@ from icalendar import Calendar
 from datetime import datetime
 import os
 import json
-from random import randint
+from random import *
+import ast 
 
 # Functions to implement
 # store students without a class
@@ -53,7 +54,7 @@ base_dir = os.path.dirname(os.path.abspath(__file__))
 example_ics_name = os.path.join(base_dir, "calendars/josh-calendar-export.ics")
 example_student_schedules_name = os.path.join(base_dir, "data/student_schedules.csv")
 example_user_database = os.path.join("./backend/data/user_database.csv")
-example_noclasses_database = os.path.join("./backend/data/user_database.csv")
+example_noclasses_database = os.path.join("./backend/data/available_timeslots.csv")
 example_userid = 1
 
 # Student Schedules Headers
@@ -66,7 +67,7 @@ SSCH_COURSECODE = "Course Code"
 SSCH_COURSENAME = "Course Name"
 SSCH_LOCATION = "Location"
 
-def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None:
+def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None: # OLD FUNCTION
     """
     Converts an .ics (iCalendar) file to a .csv file. 
     Columns are: Start,End,Summary,Description,Location
@@ -224,20 +225,20 @@ def generate_available_timeslot_database(database_path: str) -> None:
     if not os.path.exists(database_path):
         raise FileNotFoundError(f"The file {database_path} does not exist.")
     
-    with open(database_path, "w", newline='') as database:
+    with open(database_path, "w", newline='', encoding="utf-8") as database:
         writer = csv.DictWriter(database, fieldnames=[x for x in range(0,END_OF_DAY+1)])
         writer.writeheader()
 
         for day in range(MONDAY, SATURDAY):
             availability_by_hour = {}
             for hour in range(0, END_OF_DAY):
-                availability_by_hour[hour] = count_students_without_classes(example_student_schedules_name,
+                list_without_classes = count_students_without_classes(example_student_schedules_name,
                                                                             NUM_TO_WEEKDAY[day], int_to_time(hour), int_to_time(hour + 1))
-            print(availability_by_hour[22])
+            availability_by_hour[hour] = str(list_without_classes).strip("\{").strip("\}")
+            #print(availability_by_hour[22])
             writer.writerow(availability_by_hour)
 
     print("Successfully generated timeslot database.")
-
 
 def id_to_name(id_datafile:str, user_id:int) -> str:
     """
@@ -294,7 +295,7 @@ def create_class_schedule(input_csv_path: str, output_csv_path: str) -> None:
     print(f"Successfully created class schedule at {output_csv_path}")
 
 def generate_user_id():
-    return randint(100, 999)
+    return random.randint(100, 999)
 
 def register_new_student(username:str, password:str, name:str, languages:list, bio:str, 
                           calendar_filepath:str, database_filepath:str) -> None:
@@ -325,8 +326,10 @@ def register_new_student(username:str, password:str, name:str, languages:list, b
 
     print(f"Successfully added {name} with user {username}.")
 
-def generate_study_session_time() -> tuple:
+def generate_study_session_time(day:int) -> tuple:
     """
     Generate a random study session time in tuple format (Day, Start Time, End Time)
     """
-    pass
+
+    a = randint(0, 23)
+    return (NUM_TO_WEEKDAY[day], a, a + 1)
