@@ -1,5 +1,7 @@
 name,email,password,UserID,languages,bio
-aidan,a,297,aidan,a,a
-aidan,a,782,aidan,a,a
-Daniel,Hi,daniel@gmail.com,English,Hi bio,/Users/daniel/Documents/GitHub/deltahacks-test/frontend/../backend/calendars/Daniel-calendar-export.ics
-a,a,a@a.com,a,a,a,/Users/daniel/Documents/GitHub/deltahacks-test/frontend/../backend/calendars/a-calendar-export.ics
+Carol,carol123@gmail.com,carol123,Carol,English,Carol's bio.,/Users/daniel/Documents/GitHub/deltahacks-test/frontend/../backend/calendars/Carol-calendar-export.ics
+Daniel,d.halpern@mail.utoronto.ca,NoYouDon't,Daniel
+Josh,josh@mail.utoronto.ca,Password,Josh,English,Josh's Bio
+Dora,dora@mail.utoronto.ca,password,Dora,"English, French",Dora's Bio
+Aidan, aidan@mail.utoronto.ca, password, Aidan, English, Aidan's Bio
+Liz, liz@mail.utoronto.ca, password, Liz, English, Liz's Bio

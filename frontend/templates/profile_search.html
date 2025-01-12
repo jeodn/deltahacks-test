@@ -7,11 +7,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>Student Profile Search</h1>
+        <h1>Search for a Student Profile</h1>
         <form action="{{ url_for('profiles') }}" method="post">
-            <input type="text" name="search_name" placeholder="Enter student name" required>
+            <input type="text" name="search_name" placeholder="Student Name" required>
             <button type="submit">Search</button>
         </form>
+        <div class="button-container">
+            <a href="{{ url_for('register') }}" class="btn">Go to Registration</a>
+            <a href="{{ url_for('start') }}" class="btn">Back to Home</a>
+        </div>
     </div>
 </body>
 </html>

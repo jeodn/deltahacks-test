@@ -63,7 +63,7 @@ def register():
 @app.route('/profiles', methods=['GET', 'POST'])
 def profiles():
     if request.method == 'POST':
-        search_name = request.form['search_name']
+        search_name = request.form['search_name'].lower()
         
         # Fix file paths using os.path.join
         schedules_path = os.path.join(app.config['UPLOAD_FOLDER'], '..', 'data', 'student_schedules.csv')
@@ -76,7 +76,7 @@ def profiles():
         with open(user_db_path, 'r') as file:
             reader = csv.DictReader(file)
             for row in reader:
-                if row['name'] == search_name:
+                if row['name'].lower() == search_name:
                     user_info = {
                         'Name': row['name'],
                         'Email': row['email'],
