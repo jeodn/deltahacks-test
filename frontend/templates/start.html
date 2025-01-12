@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Calendar App</h1>
+        <form action="{{ url_for('register') }}">
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>
