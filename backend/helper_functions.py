@@ -266,7 +266,7 @@ def generate_timeslot_freq_database(database_path: str) -> list[list[int]]:
     Export to database_path.
     """
     END_OF_DAY = 23
-    ids = [1, 21, 24, 55, 67]
+    ids = [1, 2, 3, 4, 5]
 
     # Check if database file exists
     if not os.path.exists(database_path):
