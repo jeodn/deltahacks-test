@@ -5,7 +5,7 @@ from icalendar import Calendar
 from datetime import datetime
 import os
 import json
-from random import *
+import random
 import ast 
 
 # Functions to implement
