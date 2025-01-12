@@ -1,0 +1,56 @@
+.timetable {
+    display: grid;
+    grid-template-columns: 60px repeat(5, 1fr); /* Added time column + 5 days */
+    gap: 2px;
+    margin: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.time-header {
+    grid-column: 1;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+.day-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.timeslot {
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    min-height: 40px;
+    position: relative;
+}
+
+.hour {
+    font-size: 0.8em;
+    color: #666;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+.user-schedule {
+    background-color: rgba(173, 216, 230, 0.7);
+    border-radius: 4px;
+    padding: 4px;
+    margin: 2px;
+}
+
+.availability-schedule {
+    background-color: rgba(144, 238, 144, 0.7);
+    border-radius: 4px;
+    padding: 4px;
+    margin: 2px;
+}
