@@ -2,10 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 import sys
 
-# Add the backend directory to the system path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'backend'))
-
-from helper_functions import register_new_student, append_student_data
+from process_schedules import *
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'backend')))
+from helper_functions import *
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(__file__), '..', 'backend', 'calendars')
@@ -16,15 +15,9 @@ def start():
 
 @app.route('/schedule')
 def index():
-    user_name = request.args.get('name', 'User')
-    test_schedule = {
-        "Mon": range(8, 20),
-        "Tue": range(8, 20),
-        "Wed": range(8, 20),
-        "Thu": range(8, 20),
-        "Fri": range(8, 20),
-    }
-    return render_template('index.html', schedule=test_schedule, user_name=user_name)
+    user_schedule = get_user_schedule('backend/data/student_schedules.csv',user_name)
+    availability_schedule = get_availability_schedule('backend/data/student_schedules.csv',user_name)
+    return render_template('schedule.html', user_schedule=user_schedule, availability_schedule=availability_schedule, user_name=user_name)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -35,6 +28,7 @@ def register():
         if file.filename == '':
             return 'No selected file'
         if file:
+            global user_name
             user_name = request.form['name']
             email = request.form['email']
             password = request.form['password']

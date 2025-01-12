@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Schedule for {{ user_name }}</h1>
+    <div class="timetable">
+        {% for hour in range(8, 22) %}
+            {% for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
+                <div class="timeslot" style="grid-column: {{ loop.index }}; grid-row: {{ hour - 7 }}">
+                    <div>
+                        <strong>{{ day }} {{ hour }}:00</strong>
+                    </div>
+                    {% if (hour, day) in user_schedule %}
+                        <div class="user-schedule">
+                            <p><strong>Course:</strong> {{ user_schedule[(hour, day)] }}</p>
+                        </div>
+                    {% endif %}
+                    {% if (hour, day) in availability_schedule %}
+                        <div class="availability-schedule">
+                            <p><strong>Available Users:</strong> {{ availability_schedule[(hour, day)] | join(', ') }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</body>
+</html>

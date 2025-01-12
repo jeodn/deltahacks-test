@@ -105,3 +105,21 @@ form p {
     font-size: 1.2em;
     color: #333;
 }
+
+.timetable {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(14, 1fr);
+    gap: 5px;
+}
+.timeslot {
+    border: 1px solid #000;
+    padding: 10px;
+    position: relative;
+}
+.user-schedule {
+    background-color: rgba(173, 216, 230, 0.7); /* Light blue */
+}
+.availability-schedule {
+    background-color: rgba(144, 238, 144, 0.7); /* Light green */
+}

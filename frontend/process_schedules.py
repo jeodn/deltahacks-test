@@ -66,8 +66,8 @@ def get_availability_schedule(file_path: str, user: str) -> dict:
     
     return availability_schedule
 
-# Test the function with a sample user
-test_dict = get_availability_schedule("backend/data/student_schedules.csv", "aidan")
+# # Test the function with a sample user
+# test_dict = get_availability_schedule("backend/data/student_schedules.csv", "aidan")
 
-for item in test_dict.items():
-    print(item)
+# for item in test_dict.items():
+#     print(item)
