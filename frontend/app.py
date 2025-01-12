@@ -15,7 +15,7 @@ def index():
         "Thu": range(LATEST_START_TIME - EARLIEST_START_TIME),
         "Fri": range(LATEST_START_TIME - EARLIEST_START_TIME),
     }
-    return render_template('index.html', test_schedule)
+    return render_template('index.html', schedule = test_schedule)
 
 if __name__ == "__main__":
     app.run(debug = True)

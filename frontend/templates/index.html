@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Calendar</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     </head>
     <body>
         <div class="calendar">
@@ -11,6 +11,7 @@
                 <h1>Mon 13</h1>
                 {% for timeslot in schedule["Mon"] %}
                     <div class="timeslot">
+                        <p>timeslot</p>
                     </div>
                 {% endfor %}
             </div>
@@ -18,6 +19,7 @@
                 <h1>Tue 14</h1>
                 {% for timeslot in schedule["Tue"] %}
                     <div class="timeslot">
+                        <p>timeslot</p>
                     </div>
                 {% endfor %}
             </div>
@@ -25,6 +27,7 @@
                 <h1>Wed 15</h1>
                 {% for timeslot in schedule["Wed"] %}
                     <div class="timeslot">
+                        <p>timeslot</p>
                     </div>
                 {% endfor %}
             </div>
@@ -32,6 +35,7 @@
                 <h1>Thu 16</h1>
                 {% for timeslot in schedule["Thu"] %}
                 <div class="timeslot">
+                    <p>timeslot</p>
                 </div>
             {% endfor %}
             </div>
@@ -39,6 +43,7 @@
                 <h1>Fri 17</h1>
                 {% for timeslot in schedule["Fri"] %}
                     <div class="timeslot">
+                        <p>timeslot</p>
                     </div>
                 {% endfor %}
             </div>
