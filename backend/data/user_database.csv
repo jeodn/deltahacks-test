@@ -1,6 +1,6 @@
 name,email,password,UserID,languages,bio
 Carol,carol123@gmail.com,carol123,Carol,English,Carol's bio.,/Users/daniel/Documents/GitHub/deltahacks-test/frontend/../backend/calendars/Carol-calendar-export.ics
-Daniel,d.halpern@mail.utoronto.ca,NoYouDon't,Daniel
+Daniel,d.halpern@mail.utoronto.ca,NoYouDon't,Daniel, English, Hello there!
 Josh,josh@mail.utoronto.ca,Password,Josh,English,Josh's Bio
 Dora,dora@mail.utoronto.ca,password,Dora,"English, French",Dora's Bio
 Aidan, aidan@mail.utoronto.ca, password, Aidan, English, Aidan's Bio
