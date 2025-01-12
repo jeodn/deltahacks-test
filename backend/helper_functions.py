@@ -271,7 +271,7 @@ def student_available_this_hour(userid:int, day:int, hour:int) -> bool:
             i += 1
     return True
 
-def generate_timeslot_freq_database(database_path: str) -> None:
+def generate_timeslot_freq_database(database_path: str) -> list[list[int]]:
     """
     For each hour on each day, generate number of how many students do NOT have a class.
     Export to database_path.
@@ -292,11 +292,11 @@ def generate_timeslot_freq_database(database_path: str) -> None:
                 student_available = student_available_this_hour(id, day, hour)
                 list_of_days[day][hour] += student_available
 
-    with open(database_path, "w", newline='', encoding="utf-8") as database:
-        pass
+    print("Successfully generated timeslot list of lists.")
 
-    print("Successfully generated timeslot database.")
-    print(list_of_days)
+    return list_of_days
+
+    
 
 def id_to_name(id_datafile:str, user_id:int) -> str:
     """
