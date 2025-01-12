@@ -30,6 +30,14 @@ NUM_TO_WEEKDAY = {
     6: "Sunday"
 }
 
+MONDAY = 0
+TUESDAY = 1
+WEDNESDAY = 2
+THURSDAY = 3
+FRIDAY = 4
+SATURDAY = 5
+SUNDAY = 6
+
 # student_schedules.csv columns
 STUSCHED_USERID = 0
 STUSCHED_NAME = 1
@@ -39,6 +47,24 @@ STUSCHED_ENDTIME = 4
 STUSCHED_COURSECODE = 5
 STUSCHED_COURSENAME = 6
 STUSCHED_LOCATION = 7
+
+# Directories
+base_dir = os.path.dirname(os.path.abspath(__file__))
+example_ics_name = os.path.join(base_dir, "calendars/josh-calendar-export.ics")
+example_student_schedules_name = os.path.join(base_dir, "data/student_schedules.csv")
+example_user_database = os.path.join("./backend/data/user_database.csv")
+example_noclasses_database = os.path.join("./backend/data/user_database.csv")
+example_userid = 1
+
+# Student Schedules Headers
+SSCH_USERID = "UserID"
+SSCH_NAME = "Name"
+SSCH_DAY = "Day" 
+SSCH_START = "Start"
+SSCH_END = "End"
+SSCH_COURSECODE = "Course Code"
+SSCH_COURSENAME = "Course Name"
+SSCH_LOCATION = "Location"
 
 def ics_to_csv(ics_file_path: str, csv_file_path: str) -> None:
     """
@@ -145,7 +171,7 @@ def count_students_without_classes(file_path: str, day: str, start_time: str, en
     Counts the number of students who do not have a class during the given time period on a specific day.
     
     Args:
-        file_path (str): Path to the CSV file.
+        file_path (str): Path to the student schedule CSV file.
         day (str): The day to filter (e.g., "Monday").
         start_time (str): Start of the time range in HH:MM format (e.g., "12:00").
         end_time (str): End of the time range in HH:MM format (e.g., "13:00").
@@ -165,10 +191,10 @@ def count_students_without_classes(file_path: str, day: str, start_time: str, en
         reader = csv.DictReader(csv_file)
         
         for row in reader:
-            student_name = row["Student Name"]
-            class_day = row["Day"]
-            class_start_time = datetime.strptime(row["StartTime"], "%H:%M").time()
-            class_end_time = datetime.strptime(row["EndTime"], "%H:%M").time()
+            student_name = row[SSCH_NAME]
+            class_day = row[SSCH_DAY]
+            class_start_time = datetime.strptime(row[SSCH_START], "%H:%M").time()
+            class_end_time = datetime.strptime(row[SSCH_END], "%H:%M").time()
             
             # Add all students to the complete list
             all_students.add(student_name)
@@ -183,6 +209,35 @@ def count_students_without_classes(file_path: str, day: str, start_time: str, en
     students_without_classes = all_students - students_with_classes
     
     return students_without_classes
+
+def int_to_time(x:int) -> str:
+    return datetime.strptime(str(x), "%H").strftime("%H:%M")
+
+def generate_available_timeslot_database(database_path: str) -> None:
+    """
+    For each hour on each day, generate list of which students do NOT have a class.
+    Export to database_path.
+    """
+    END_OF_DAY = 23
+
+    # Check if database file exists
+    if not os.path.exists(database_path):
+        raise FileNotFoundError(f"The file {database_path} does not exist.")
+    
+    with open(database_path, "w", newline='') as database:
+        writer = csv.DictWriter(database, fieldnames=[x for x in range(0,END_OF_DAY+1)])
+        writer.writeheader()
+
+        for day in range(MONDAY, SATURDAY):
+            availability_by_hour = {}
+            for hour in range(0, END_OF_DAY):
+                availability_by_hour[hour] = count_students_without_classes(example_student_schedules_name,
+                                                                            NUM_TO_WEEKDAY[day], int_to_time(hour), int_to_time(hour + 1))
+            print(availability_by_hour[22])
+            writer.writerow(availability_by_hour)
+
+    print("Successfully generated timeslot database.")
+
 
 def id_to_name(id_datafile:str, user_id:int) -> str:
     """
@@ -269,3 +324,9 @@ def register_new_student(username:str, password:str, name:str, languages:list, b
         writer.writerow(my_profile)
 
     print(f"Successfully added {name} with user {username}.")
+
+def generate_study_session_time() -> tuple:
+    """
+    Generate a random study session time in tuple format (Day, Start Time, End Time)
+    """
+    pass
