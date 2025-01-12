@@ -1,2 +1,3 @@
 # deltahacks-test
-we tried
+main file is in:
+frontend > app.py
