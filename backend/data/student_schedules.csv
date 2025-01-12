@@ -1,16 +1,101 @@
 UserID,Name,Day,Start,End,Course Code,Course Name,Location
-1,Daniel,Monday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
-1,Daniel,Monday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270villasjo,Josh Villas,Monday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
-villasjo,Josh Villas,Monday,19:00,21:00,CSC148H5 LEC0103,Introduction to Computer,ZZ TBA
-villasjo,Josh Villas,Wednesday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
-villasjo,Josh Villas,Friday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
-villasjo,Josh Villas,Thursday,13:00,15:00,CSC148H5 PRA0108,Introduction to Computer,DH 2020
-villasjo,Josh Villas,Thursday,09:00,12:00,ISP100H5 LEC0137,Writing for University and,MN 3290
-villasjo,Josh Villas,Tuesday,09:00,11:00,MAT136H5 LEC0105,Integral Calculus, 
-villasjo,Josh Villas,Friday,11:00,12:00,MAT136H5 LEC0105,Integral Calculus, 
-villasjo,Josh Villas,Friday,17:00,19:00,MAT136H5 LEC0105,Integral Calculus,ZZ TBA
-villasjo,Josh Villas,Tuesday,12:00,13:00,MAT136H5 TUT0123,Integral Calculus,IB 350
-villasjo,Josh Villas,Monday,10:00,11:00,STA107H5 LEC0101,An Introduction to Probability,MN 1210
-villasjo,Josh Villas,Wednesday,11:00,13:00,STA107H5 LEC0101,An Introduction to Probability,IB 110
-villasjo,Josh Villas,Saturday,10:00,12:00,STA107H5 LEC0101,An Introduction to Probability,ZZ TBA
-villasjo,Josh Villas,Friday,12:00,13:00,STA107H5 TUT0114,An Introduction to Probability,IB 240
+0,aidan,Thursday,13:00,15:00,CCT110H5 LEC0102,Rhetoric and Media,CC 1080
+0,aidan,Thursday,09:00,10:00,CCT110H5 TUT0101,Rhetoric and Media,IB 379
+0,aidan,Tuesday,19:00,21:00,CCT111H5 LEC0101,Critical Coding,IB 235
+0,aidan,Tuesday,13:00,14:00,CCT111H5 PRA0102,Critical Coding,CC 2130
+0,aidan,Monday,10:00,11:00,CSC148H5 LEC0102,Introduction to Computer,MN 1270
+0,aidan,Monday,19:00,21:00,CSC148H5 LEC0102,Introduction to Computer,ZZ TBA
+0,aidan,Wednesday,10:00,11:00,CSC148H5 LEC0102,Introduction to Computer,MN 1270
+0,aidan,Friday,10:00,11:00,CSC148H5 LEC0102,Introduction to Computer,MN 1270
+0,aidan,Friday,11:00,13:00,CSC148H5 PRA0123,Introduction to Computer,DH 2026
+0,aidan,Tuesday,16:00,17:00,MAT136H5 LEC0109,Integral Calculus,IB 245
+0,aidan,Thursday,15:00,17:00,MAT136H5 LEC0109,Integral Calculus,IB 120
+0,aidan,Friday,17:00,19:00,MAT136H5 LEC0109,Integral Calculus,ZZ TBA
+0,aidan,Tuesday,17:00,18:00,MAT136H5 TUT0130,Integral Calculus,IB 200
+0,aidan,Monday,13:00,15:00,STA107H5 LEC0103,An Introduction to Probability,MN 1210
+0,aidan,Wednesday,15:00,16:00,STA107H5 LEC0103,An Introduction to Probability,MN 1210
+0,aidan,Saturday,10:00,12:00,STA107H5 LEC0103,An Introduction to Probability,ZZ TBA
+0,aidan,Thursday,18:00,19:00,STA107H5 TUT0104,An Introduction to Probability,IB 390
+1,carol,Monday,09:00,10:00,CSC148H5 LEC0101,Introduction to Computer,MN 1270
+1,carol,Monday,19:00,21:00,CSC148H5 LEC0101,Introduction to Computer,ZZ TBA
+1,carol,Wednesday,09:00,10:00,CSC148H5 LEC0101,Introduction to Computer,MN 1270
+1,carol,Friday,09:00,10:00,CSC148H5 LEC0101,Introduction to Computer,MN 1270
+1,carol,Thursday,19:00,21:00,CSC148H5 PRA0116,Introduction to Computer,DH 2020
+1,carol,Tuesday,14:00,15:00,MAT139H5 LEC0101,Integral Calculus for,KN 137
+1,carol,Friday,11:00,13:00,MAT139H5 LEC0101,Integral Calculus for,DV 2080
+1,carol,Friday,15:00,17:00,MAT139H5 LEC0101,Integral Calculus for,ZZ TBA
+1,carol,Monday,15:00,17:00,MAT139H5 TUT0102,Integral Calculus for,MN 3220
+1,carol,Tuesday,09:00,10:00,MAT240H5 LEC0101,Algebra I,MN 2170
+1,carol,Thursday,09:00,11:00,MAT240H5 LEC0101,Algebra I,MN 2170
+1,carol,Wednesday,11:00,13:00,MAT240H5 TUT0101,Algebra I,IB 377
+1,carol,Monday,10:00,11:00,PHY147H5 LEC0101,Principles of Physics II,IB 245
+1,carol,Wednesday,10:00,11:00,PHY147H5 LEC0101,Principles of Physics II,IB 150
+1,carol,Friday,10:00,11:00,PHY147H5 LEC0101,Principles of Physics II,IB 345
+1,carol,Tuesday,15:00,17:00,PHY147H5 TUT0102,Principles of Physics II,MN 3140
+1,carol,Monday,13:00,15:00,STA107H5 LEC0103,An Introduction to Probability,MN 1210
+1,carol,Wednesday,15:00,16:00,STA107H5 LEC0103,An Introduction to Probability,MN 1210
+1,carol,Saturday,10:00,12:00,STA107H5 LEC0103,An Introduction to Probability,ZZ TBA
+1,carol,Thursday,18:00,19:00,STA107H5 TUT0103,An Introduction to Probability,IB 240
+2,daniel,Monday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
+2,daniel,Monday,19:00,21:00,CSC148H5 LEC0103,Introduction to Computer,ZZ TBA
+2,daniel,Wednesday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
+2,daniel,Friday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
+2,daniel,Thursday,13:00,15:00,CSC148H5 PRA0108,Introduction to Computer,DH 2020
+2,daniel,Tuesday,09:00,12:00,ISP100H5 LEC0113,Writing for University and,MN 3290
+2,daniel,Wednesday,15:00,17:00,MAT136H5 LEC0111,Integral Calculus,IB 245
+2,daniel,Friday,15:00,16:00,MAT136H5 LEC0111,Integral Calculus,IB 245
+2,daniel,Friday,17:00,19:00,MAT136H5 LEC0111,Integral Calculus,ZZ TBA
+2,daniel,Tuesday,16:00,17:00,MAT136H5 TUT0129,Integral Calculus,MN 3120
+2,daniel,Monday,10:00,11:00,STA107H5 LEC0101,An Introduction to Probability,MN 1210
+2,daniel,Wednesday,11:00,13:00,STA107H5 LEC0101,An Introduction to Probability,IB 110
+2,daniel,Saturday,10:00,12:00,STA107H5 LEC0101,An Introduction to Probability,ZZ TBA
+2,daniel,Thursday,18:00,19:00,STA107H5 TUT0104,An Introduction to Probability,IB 390
+3,dora,Monday,14:00,15:00,CSC148H5 LEC0104,Introduction to Computer,MN 1270
+3,dora,Monday,19:00,21:00,CSC148H5 LEC0104,Introduction to Computer,ZZ TBA
+3,dora,Wednesday,14:00,15:00,CSC148H5 LEC0104,Introduction to Computer,MN 1270
+3,dora,Friday,14:00,15:00,CSC148H5 LEC0104,Introduction to Computer,MN 1270
+3,dora,Thursday,11:00,13:00,CSC148H5 PRA0106,Introduction to Computer,DH 2010
+3,dora,Tuesday,13:00,14:00,MAT102H5 LEC0103,Introduction to Mathematical,DV 2080
+3,dora,Tuesday,18:00,20:00,MAT102H5 LEC0103,Introduction to Mathematical,ZZ TBA
+3,dora,Friday,09:00,11:00,MAT102H5 LEC0103,Introduction to Mathematical,KN 137
+3,dora,Tuesday,10:00,11:00,MAT102H5 TUT0115,Introduction to Mathematical,MN 3180
+3,dora,Wednesday,15:00,17:00,MAT136H5 LEC0111,Integral Calculus,IB 245
+3,dora,Friday,15:00,16:00,MAT136H5 LEC0111,Integral Calculus,IB 245
+3,dora,Friday,17:00,19:00,MAT136H5 LEC0111,Integral Calculus,ZZ TBA
+3,dora,Monday,15:00,16:00,MAT136H5 TUT0110,Integral Calculus,IB 385
+3,dora,Monday,11:00,13:00,STA107H5 LEC0102,An Introduction to Probability,IB 245
+3,dora,Wednesday,10:00,11:00,STA107H5 LEC0102,An Introduction to Probability,KN 137
+3,dora,Saturday,10:00,12:00,STA107H5 LEC0102,An Introduction to Probability,ZZ TBA
+3,dora,Thursday,18:00,19:00,STA107H5 TUT0103,An Introduction to Probability,IB 240
+3,dora,Thursday,15:00,17:00,UTM192H5 LEC0102,utmONE Scholars: Special,MN 1100
+4,josh,Monday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
+4,josh,Monday,19:00,21:00,CSC148H5 LEC0103,Introduction to Computer,ZZ TBA
+4,josh,Wednesday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
+4,josh,Friday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
+4,josh,Thursday,13:00,15:00,CSC148H5 PRA0108,Introduction to Computer,DH 2020
+4,josh,Thursday,09:00,12:00,ISP100H5 LEC0137,Writing for University and,MN 3290
+4,josh,Tuesday,09:00,11:00,MAT136H5 LEC0105,Integral Calculus, 
+4,josh,Friday,11:00,12:00,MAT136H5 LEC0105,Integral Calculus, 
+4,josh,Friday,17:00,19:00,MAT136H5 LEC0105,Integral Calculus,ZZ TBA
+4,josh,Tuesday,12:00,13:00,MAT136H5 TUT0123,Integral Calculus,IB 350
+4,josh,Monday,10:00,11:00,STA107H5 LEC0101,An Introduction to Probability,MN 1210
+4,josh,Wednesday,11:00,13:00,STA107H5 LEC0101,An Introduction to Probability,IB 110
+4,josh,Saturday,10:00,12:00,STA107H5 LEC0101,An Introduction to Probability,ZZ TBA
+4,josh,Friday,12:00,13:00,STA107H5 TUT0114,An Introduction to Probability,IB 240
+5,liz,Monday,15:00,16:00,ANT101H5 LEC0101,Introduction to Biological, 
+5,liz,Wednesday,15:00,16:00,ANT101H5 LEC0101,Introduction to Biological, 
+5,liz,Friday,09:00,10:00,ANT101H5 PRA0118,Introduction to Biological, 
+5,liz,Monday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
+5,liz,Monday,19:00,21:00,CSC148H5 LEC0103,Introduction to Computer,ZZ TBA
+5,liz,Wednesday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
+5,liz,Friday,13:00,14:00,CSC148H5 LEC0103,Introduction to Computer,MN 1270
+5,liz,Thursday,11:00,13:00,CSC148H5 PRA0106,Introduction to Computer,DH 2010
+5,liz,Wednesday,17:00,19:00,EDS100H5 LEC0101,Introduction to Education,DV 2072
+5,liz,Tuesday,11:00,13:00,MAT102H5 LEC0102,Introduction to Mathematical,DV 2082
+5,liz,Tuesday,18:00,20:00,MAT102H5 LEC0102,Introduction to Mathematical,ZZ TBA
+5,liz,Friday,14:00,15:00,MAT102H5 LEC0102,Introduction to Mathematical,IB 120
+5,liz,Thursday,09:00,10:00,MAT102H5 TUT0112,Introduction to Mathematical,CC 2150
+5,liz,Tuesday,14:00,15:00,MAT136H5 LEC0108,Integral Calculus,DV 2080
+5,liz,Thursday,15:00,17:00,MAT136H5 LEC0108,Integral Calculus,KN 137
+5,liz,Friday,17:00,19:00,MAT136H5 LEC0108,Integral Calculus,ZZ TBA
+5,liz,Tuesday,16:00,17:00,MAT136H5 TUT0129,Integral Calculus,MN 3120
