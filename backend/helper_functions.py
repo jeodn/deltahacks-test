@@ -31,6 +31,16 @@ NUM_TO_WEEKDAY = {
     6: "Sunday"
 }
 
+WEEKDAY_TO_NUM = {
+    "Monday":0,
+    "Tuesday":1,
+    "Wednesday":2,
+    "Thursday":3,
+    "Friday":4,
+    "Saturday":5,
+    "Sunday":6
+}
+
 MONDAY = 0
 TUESDAY = 1
 WEDNESDAY = 2
@@ -55,6 +65,7 @@ example_ics_name = os.path.join(base_dir, "calendars/josh-calendar-export.ics")
 example_student_schedules_name = os.path.join(base_dir, "data/student_schedules.csv")
 example_user_database = os.path.join("./backend/data/user_database.csv")
 example_noclasses_database = os.path.join("./backend/data/available_timeslots.csv")
+example_timeslots_database = os.path.join("./backend/data/timeslots_with_frequency.csv")
 example_userid = 1
 
 # Student Schedules Headers
@@ -214,6 +225,9 @@ def count_students_without_classes(file_path: str, day: str, start_time: str, en
 def int_to_time(x:int) -> str:
     return datetime.strptime(str(x), "%H").strftime("%H:%M")
 
+def time_to_int(timestr:str) -> int:
+    return int(timestr[0:2])
+
 def generate_available_timeslot_database(database_path: str) -> None:
     """
     For each hour on each day, generate list of which students do NOT have a class.
@@ -239,6 +253,50 @@ def generate_available_timeslot_database(database_path: str) -> None:
             writer.writerow(availability_by_hour)
 
     print("Successfully generated timeslot database.")
+
+def student_available_this_hour(userid:int, day:int, hour:int) -> bool:
+    with open(example_student_schedules_name) as schedules:
+        L = schedules.readlines()
+        i=0
+        for l in L:
+            if i == 0:
+                i += 1
+                continue
+            line = l.split(',')
+            A = line[STUSCHED_USERID]
+            B = line[STUSCHED_DAY]
+            C = line[STUSCHED_STARTTIME]
+            if int(A)== userid and WEEKDAY_TO_NUM[B]==day and time_to_int(C)==hour:
+                return False
+            i += 1
+    return True
+
+def generate_timeslot_freq_database(database_path: str) -> None:
+    """
+    For each hour on each day, generate number of how many students do NOT have a class.
+    Export to database_path.
+    """
+    END_OF_DAY = 23
+    ids = [1, 21, 24, 55, 67]
+
+    # Check if database file exists
+    if not os.path.exists(database_path):
+        raise FileNotFoundError(f"The file {database_path} does not exist.")
+    
+    list_of_days = [] # list of lists
+    for day in range(5):
+        list_of_days.append([])
+        for hour in range(END_OF_DAY):
+            list_of_days[day].append(0)
+            for id in ids:
+                student_available = student_available_this_hour(id, day, hour)
+                list_of_days[day][hour] += student_available
+
+    with open(database_path, "w", newline='', encoding="utf-8") as database:
+        pass
+
+    print("Successfully generated timeslot database.")
+    print(list_of_days)
 
 def id_to_name(id_datafile:str, user_id:int) -> str:
     """
